@@ -1,0 +1,31 @@
+{
+  "tests": [
+    {
+      "name": "OPTIONS preflight",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    },
+    {
+      "name": "Save lead",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "name": "Тест",
+        "phone": "+79001234567",
+        "contact_way": "Telegram",
+        "comment": "Тест",
+        "estimate": "3 500 000 ₽",
+        "project": "5628"
+      },
+      "expectedStatus": 200
+    },
+    {
+      "name": "Missing phone",
+      "method": "POST",
+      "path": "/",
+      "body": { "name": "Без телефона" },
+      "expectedStatus": 400
+    }
+  ]
+}
