@@ -1,23 +1,26 @@
-import { Send, Phone } from "lucide-react"
+import { Send, Phone } from "lucide-react";
 
-const PHONE = "+79013325199"
-const PHONE_DISPLAY = "+7 901 332 51 99"
-const TELEGRAM_LINK = "https://t.me/YOUR_TELEGRAM"
+const PHONE = "+79013325199";
+const PHONE_DISPLAY = "+7 901 332 51 99";
+const TELEGRAM_LINK = "https://t.me/@tttim_skl";
 
 interface Props {
-  onLead: () => void
+  onLead: () => void;
 }
 
 export function ProjectFooterCTA({ onLead }: Props) {
   return (
     <section className="py-24 bg-foreground text-white">
       <div className="container mx-auto px-6 md:px-12 text-center">
-        <p className="text-white/50 text-xs tracking-[0.3em] uppercase mb-6">Следующий шаг</p>
+        <p className="text-white/50 text-xs tracking-[0.3em] uppercase mb-6">
+          Следующий шаг
+        </p>
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium mb-6 max-w-2xl mx-auto leading-tight">
           Нужен точный расчёт под ваш участок?
         </h2>
         <p className="text-white/60 mb-12 max-w-lg mx-auto">
-          Каждый участок уникален — грунт, рельеф, инфраструктура влияют на итоговую цену. Оставьте заявку и получите персональную смету.
+          Каждый участок уникален — грунт, рельеф, инфраструктура влияют на
+          итоговую цену. Оставьте заявку и получите персональную смету.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
           <button
@@ -53,5 +56,5 @@ export function ProjectFooterCTA({ onLead }: Props) {
         </div>
       </div>
     </section>
-  )
+  );
 }
