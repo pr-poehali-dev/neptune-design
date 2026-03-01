@@ -1,46 +1,55 @@
-import { useState, useEffect } from "react"
-import { X, Phone, Send } from "lucide-react"
+import { useState, useEffect } from "react";
+import { X, Phone, Send } from "lucide-react";
 
-const PHONE = "+79013325199"
-const PHONE_DISPLAY = "+7 901 332 51 99"
-const TELEGRAM_LINK = "https://t.me/YOUR_TELEGRAM"
-const LEADS_URL = "https://functions.poehali.dev/224b976f-276f-46b9-a317-78cbf9185917"
+const PHONE = "+79013325199";
+const PHONE_DISPLAY = "+7 901 332 51 99";
+const TELEGRAM_LINK = "https://t.me/@tttim_skl";
+const LEADS_URL =
+  "https://functions.poehali.dev/224b976f-276f-46b9-a317-78cbf9185917";
 
 interface Props {
-  open: boolean
-  onClose: () => void
-  projectName?: string
-  prefill?: Record<string, string>
-  title?: string
+  open: boolean;
+  onClose: () => void;
+  projectName?: string;
+  prefill?: Record<string, string>;
+  title?: string;
 }
 
-export function ContactModal({ open, onClose, projectName = "", prefill, title }: Props) {
-  const [name, setName] = useState("")
-  const [phone, setPhone] = useState("")
-  const [telegram, setTelegram] = useState("")
-  const [loading, setLoading] = useState(false)
-  const [done, setDone] = useState(false)
-  const [error, setError] = useState("")
+export function ContactModal({
+  open,
+  onClose,
+  projectName = "",
+  prefill,
+  title,
+}: Props) {
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [telegram, setTelegram] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [done, setDone] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     if (open) {
-      document.body.style.overflow = "hidden"
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = ""
+      document.body.style.overflow = "";
     }
-    return () => { document.body.style.overflow = "" }
-  }, [open])
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
-  if (!open) return null
+  if (!open) return null;
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     if (!name.trim() || !phone.trim()) {
-      setError("Пожалуйста, заполните имя и телефон.")
-      return
+      setError("Пожалуйста, заполните имя и телефон.");
+      return;
     }
-    setError("")
-    setLoading(true)
+    setError("");
+    setLoading(true);
     try {
       await fetch(LEADS_URL, {
         method: "POST",
@@ -53,25 +62,26 @@ export function ContactModal({ open, onClose, projectName = "", prefill, title }
           estimate: prefill?.estimate ?? "",
           project: projectName,
         }),
-      })
+      });
     } catch {
       // silent
     } finally {
-      setDone(true)
-      setLoading(false)
+      setDone(true);
+      setLoading(false);
     }
-  }
+  };
 
   const handleClose = () => {
-    setDone(false)
-    setName("")
-    setPhone("")
-    setTelegram("")
-    setError("")
-    onClose()
-  }
+    setDone(false);
+    setName("");
+    setPhone("");
+    setTelegram("");
+    setError("");
+    onClose();
+  };
 
-  const modalTitle = title ?? (prefill?.estimate ? "Отправить расчёт" : "Оставить заявку")
+  const modalTitle =
+    title ?? (prefill?.estimate ? "Отправить расчёт" : "Оставить заявку");
 
   return (
     <div
@@ -92,11 +102,23 @@ export function ContactModal({ open, onClose, projectName = "", prefill, title }
         {done ? (
           <div className="p-10 text-center">
             <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-6">
-              <svg className="w-8 h-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+              <svg
+                className="w-8 h-8 text-green-600"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M5 13l4 4L19 7"
+                />
               </svg>
             </div>
-            <h3 className="text-2xl font-medium mb-3">Спасибо, что выбрали нас!</h3>
+            <h3 className="text-2xl font-medium mb-3">
+              Спасибо, что выбрали нас!
+            </h3>
             <p className="text-muted-foreground leading-relaxed mb-8">
               Мы свяжемся с вами в ближайшее время.
             </p>
@@ -119,12 +141,17 @@ export function ContactModal({ open, onClose, projectName = "", prefill, title }
         ) : (
           <form onSubmit={handleSubmit} className="p-8">
             {projectName && (
-              <p className="text-xs text-muted-foreground tracking-[0.2em] uppercase mb-2">{projectName}</p>
+              <p className="text-xs text-muted-foreground tracking-[0.2em] uppercase mb-2">
+                {projectName}
+              </p>
             )}
             <h3 className="text-2xl font-medium mb-2">{modalTitle}</h3>
             {prefill?.estimate && (
               <p className="text-sm text-muted-foreground mb-6 pb-6 border-b border-border">
-                Расчёт: <span className="font-medium text-foreground">{prefill.estimate}</span>
+                Расчёт:{" "}
+                <span className="font-medium text-foreground">
+                  {prefill.estimate}
+                </span>
               </p>
             )}
             {!prefill?.estimate && <div className="mb-6" />}
@@ -156,7 +183,10 @@ export function ContactModal({ open, onClose, projectName = "", prefill, title }
               </div>
               <div>
                 <label className="text-sm font-medium block mb-1.5">
-                  Telegram <span className="text-muted-foreground font-normal text-xs">(необязательно)</span>
+                  Telegram{" "}
+                  <span className="text-muted-foreground font-normal text-xs">
+                    (необязательно)
+                  </span>
                 </label>
                 <input
                   type="text"
@@ -203,11 +233,13 @@ export function ContactModal({ open, onClose, projectName = "", prefill, title }
                   Позвонить
                 </a>
               </div>
-              <p className="text-center text-muted-foreground text-sm mt-3">{PHONE_DISPLAY}</p>
+              <p className="text-center text-muted-foreground text-sm mt-3">
+                {PHONE_DISPLAY}
+              </p>
             </div>
           </form>
         )}
       </div>
     </div>
-  )
+  );
 }
