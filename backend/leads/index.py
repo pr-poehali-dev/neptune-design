@@ -1,4 +1,4 @@
-"""Сохраняет лид из формы расчёта проекта 5628 в базу данных."""
+"""Сохраняет лид из формы обратной связи в базу данных."""
 import json
 import os
 
@@ -30,17 +30,18 @@ def handler(event: dict, context) -> dict:
         return {"statusCode": 400, "headers": cors, "body": json.dumps({"error": "name and phone required"})}
 
     contact_way = (body.get("contact_way") or "Телефон").strip()
+    telegram = (body.get("telegram") or "").strip()
     comment = (body.get("comment") or "").strip()
     estimate = (body.get("estimate") or "").strip()
-    project = (body.get("project") or "5628").strip()
+    project = (body.get("project") or "").strip()
 
     conn = psycopg2.connect(os.environ["DATABASE_URL"])
     cur = conn.cursor()
     cur.execute(
         """INSERT INTO t_p72692264_neptune_design.leads
-           (project, name, phone, contact_way, comment, estimate)
-           VALUES (%s, %s, %s, %s, %s, %s) RETURNING id""",
-        (project, name, phone, contact_way, comment, estimate),
+           (project, name, phone, contact_way, telegram, comment, estimate)
+           VALUES (%s, %s, %s, %s, %s, %s, %s) RETURNING id""",
+        (project, name, phone, contact_way, telegram, comment, estimate),
     )
     lead_id = cur.fetchone()[0]
     conn.commit()

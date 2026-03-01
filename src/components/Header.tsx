@@ -1,9 +1,11 @@
 import { useState, useEffect, MouseEvent } from "react"
 import { cn } from "../lib/utils"
+import { ContactModal } from "./ContactModal"
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [contactOpen, setContactOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,6 +25,7 @@ export function Header() {
   }
 
   return (
+    <>
     <header
       className={cn(
         "fixed z-50 transition-all duration-500 my-0 py-0 rounded-none",
@@ -55,17 +58,15 @@ export function Header() {
           ))}
         </ul>
 
-        <a
-          href="#contact"
+        <button
+          onClick={() => setContactOpen(true)}
           className={cn(
             "hidden md:inline-flex items-center gap-2 text-sm px-5 py-2.5 transition-all duration-300",
-            scrolled
-              ? "bg-white text-foreground border border-foreground/20 hover:bg-foreground hover:text-white"
-              : "bg-white text-foreground border border-foreground/20 hover:bg-foreground hover:text-white",
+            "bg-white text-foreground border border-foreground/20 hover:bg-foreground hover:text-white",
           )}
         >
           Связаться
-        </a>
+        </button>
 
         <button
           className="md:hidden z-50 transition-colors duration-300 text-white"
@@ -113,15 +114,21 @@ export function Header() {
             ))}
           </ul>
 
-          <a
-            href="#contact"
+          <button
+            onClick={() => { closeMobileMenu(); setContactOpen(true) }}
             className="inline-flex items-center justify-center gap-2 text-sm px-5 py-2.5 bg-white text-foreground border border-foreground/20 hover:bg-foreground hover:text-white transition-all duration-300 mb-4"
-            onClick={closeMobileMenu}
           >
             Связаться
-          </a>
+          </button>
         </div>
       </div>
     </header>
+
+    <ContactModal
+      open={contactOpen}
+      onClose={() => setContactOpen(false)}
+      title="Связаться с нами"
+    />
+    </>
   )
 }

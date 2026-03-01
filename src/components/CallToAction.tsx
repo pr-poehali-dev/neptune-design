@@ -1,8 +1,17 @@
-import { ArrowRight } from "lucide-react"
+import { useState } from "react"
+import { ArrowRight, Send, Phone } from "lucide-react"
 import { HighlightedText } from "./HighlightedText"
+import { ContactModal } from "./ContactModal"
+
+const PHONE = "+79013325199"
+const PHONE_DISPLAY = "+7 901 332 51 99"
+const TELEGRAM_LINK = "https://t.me/YOUR_TELEGRAM"
 
 export function CallToAction() {
+  const [modalOpen, setModalOpen] = useState(false)
+
   return (
+    <>
     <section id="contact" className="py-32 md:py-29 bg-foreground text-primary-foreground">
       <div className="container mx-auto px-6 md:px-12">
         <div className="max-w-4xl mx-auto text-center">
@@ -18,23 +27,49 @@ export function CallToAction() {
             Расскажите о своих пожеланиях — бюджет, площадь, регион. Мы подберём готовый вариант или составим план строительства.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="mailto:hello@nashdom.ru"
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
+            <button
+              onClick={() => setModalOpen(true)}
               className="inline-flex items-center justify-center gap-3 bg-primary-foreground text-foreground px-8 py-4 text-sm tracking-wide hover:bg-primary-foreground/90 transition-colors duration-300 group"
             >
-              Написать нам
+              Оставить заявку
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </button>
+            <button
+              onClick={() => setModalOpen(true)}
+              className="inline-flex items-center justify-center gap-3 bg-primary-foreground text-foreground px-8 py-4 text-sm tracking-wide hover:bg-primary-foreground/90 transition-colors duration-300"
+            >
+              Получить расчёт
+            </button>
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-primary-foreground/60 text-sm">
+            <a
+              href={TELEGRAM_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 hover:text-primary-foreground transition-colors"
+            >
+              <Send className="w-4 h-4" />
+              Написать в Telegram
             </a>
             <a
-              href="tel:+74951234567"
-              className="inline-flex items-center justify-center gap-2 border border-primary-foreground/30 px-8 py-4 text-sm tracking-wide hover:bg-primary-foreground/10 transition-colors duration-300"
+              href={`tel:${PHONE}`}
+              className="flex items-center gap-2 hover:text-primary-foreground transition-colors"
             >
-              Позвонить нам
+              <Phone className="w-4 h-4" />
+              {PHONE_DISPLAY}
             </a>
           </div>
         </div>
       </div>
     </section>
+
+    <ContactModal
+      open={modalOpen}
+      onClose={() => setModalOpen(false)}
+      title="Оставить заявку"
+    />
+    </>
   )
 }

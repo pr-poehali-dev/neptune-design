@@ -2,7 +2,8 @@ import { useState, useRef, useMemo } from "react"
 import { X, ChevronLeft, ChevronRight } from "lucide-react"
 import { OptionGroup } from "@/components/projectShared/OptionGroup"
 import { SummaryPanel } from "@/components/projectShared/SummaryPanel"
-import { LeadModal } from "@/components/projectShared/LeadModal"
+import { ContactModal } from "@/components/ContactModal"
+import { FloatingCTA } from "@/components/FloatingCTA"
 import { HowWeWork } from "@/components/projectShared/HowWeWork"
 import { ProjectFooterCTA } from "@/components/projectShared/ProjectFooterCTA"
 import { calculatePrice, formatRub, defaultState, CalcState } from "@/components/projectTsvetnaya2/calcLogic"
@@ -280,7 +281,8 @@ export default function ProjectTsvetnaya2() {
 
       <HowWeWork />
       <ProjectFooterCTA onLead={() => openLead()} />
-      <LeadModal open={leadOpen} onClose={() => setLeadOpen(false)} projectName="Цветочная 2" prefill={leadData} />
+      <ContactModal open={leadOpen} onClose={() => setLeadOpen(false)} projectName="Цветочная 2" prefill={leadData} />
+      <FloatingCTA />
     </div>
   )
 }

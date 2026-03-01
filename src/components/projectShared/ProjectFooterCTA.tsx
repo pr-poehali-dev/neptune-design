@@ -1,3 +1,9 @@
+import { Send, Phone } from "lucide-react"
+
+const PHONE = "+79013325199"
+const PHONE_DISPLAY = "+7 901 332 51 99"
+const TELEGRAM_LINK = "https://t.me/YOUR_TELEGRAM"
+
 interface Props {
   onLead: () => void
 }
@@ -14,18 +20,36 @@ export function ProjectFooterCTA({ onLead }: Props) {
           Каждый участок уникален — грунт, рельеф, инфраструктура влияют на итоговую цену. Оставьте заявку и получите персональную смету.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-          <button onClick={onLead} className="bg-white text-foreground px-10 py-4 text-sm font-medium hover:bg-white/90 transition-colors w-full sm:w-auto">
+          <button
+            onClick={onLead}
+            className="bg-white text-foreground px-10 py-4 text-sm font-medium hover:bg-white/90 transition-colors w-full sm:w-auto"
+          >
             Оставить заявку
           </button>
-          <a href="https://t.me/example" target="_blank" rel="noopener noreferrer" className="border border-white/30 text-white px-10 py-4 text-sm hover:bg-white/10 transition-colors w-full sm:w-auto text-center">
-            Написать в мессенджер
-          </a>
+          <button
+            onClick={onLead}
+            className="border border-white/30 text-white px-10 py-4 text-sm hover:bg-white/10 transition-colors w-full sm:w-auto"
+          >
+            Получить расчёт
+          </button>
         </div>
         <div className="border-t border-white/10 pt-10 flex flex-col md:flex-row items-center justify-center gap-8 text-white/50 text-sm">
-          <a href="tel:+70000000000" className="hover:text-white transition-colors">+7 (000) 000-00-00</a>
-          <a href="https://t.me/example" className="hover:text-white transition-colors">Telegram</a>
-          <a href="https://wa.me/70000000000" className="hover:text-white transition-colors">WhatsApp</a>
-          <a href="mailto:info@example.com" className="hover:text-white transition-colors">info@example.com</a>
+          <a
+            href={`tel:${PHONE}`}
+            className="flex items-center gap-2 hover:text-white transition-colors"
+          >
+            <Phone className="w-4 h-4" />
+            {PHONE_DISPLAY}
+          </a>
+          <a
+            href={TELEGRAM_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 hover:text-white transition-colors"
+          >
+            <Send className="w-4 h-4" />
+            Написать в Telegram
+          </a>
         </div>
       </div>
     </section>

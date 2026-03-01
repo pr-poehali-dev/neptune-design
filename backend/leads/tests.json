@@ -7,16 +7,17 @@
       "expectedStatus": 200
     },
     {
-      "name": "Save lead",
+      "name": "Save lead with telegram",
       "method": "POST",
       "path": "/",
       "body": {
         "name": "Тест",
         "phone": "+79001234567",
         "contact_way": "Telegram",
+        "telegram": "@testuser",
         "comment": "Тест",
         "estimate": "3 500 000 ₽",
-        "project": "5628"
+        "project": "Цветочная 2"
       },
       "expectedStatus": 200
     },

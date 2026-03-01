@@ -6,6 +6,7 @@ import { Expertise } from "../components/Expertise"
 import { FAQ } from "../components/FAQ"
 import { CallToAction } from "../components/CallToAction"
 import { Footer } from "../components/Footer"
+import { FloatingCTA } from "../components/FloatingCTA"
 
 export default function Index() {
   return (
@@ -18,6 +19,7 @@ export default function Index() {
       <FAQ />
       <CallToAction />
       <Footer />
+      <FloatingCTA />
     </main>
   )
 }

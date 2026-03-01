@@ -1,0 +1,1 @@
+ALTER TABLE t_p72692264_neptune_design.leads ADD COLUMN IF NOT EXISTS telegram text NULL DEFAULT '';

@@ -7,7 +7,8 @@ import { ProjectAdvantages } from "@/components/project5628/ProjectAdvantages"
 import { CostCalculator } from "@/components/project5628/CostCalculator"
 import { HowWeWork } from "@/components/project5628/HowWeWork"
 import { ProjectFooterCTA } from "@/components/project5628/ProjectFooterCTA"
-import { LeadModal } from "@/components/project5628/LeadModal"
+import { ContactModal } from "@/components/ContactModal"
+import { FloatingCTA } from "@/components/FloatingCTA"
 
 export default function Project5628() {
   const [leadModalOpen, setLeadModalOpen] = useState(false)
@@ -35,7 +36,8 @@ export default function Project5628() {
       </div>
       <HowWeWork />
       <ProjectFooterCTA onLead={() => openLead()} />
-      <LeadModal open={leadModalOpen} onClose={() => setLeadModalOpen(false)} prefill={leadModalData} />
+      <ContactModal open={leadModalOpen} onClose={() => setLeadModalOpen(false)} projectName="Проект 5628" prefill={leadModalData} />
+      <FloatingCTA />
     </div>
   )
 }
