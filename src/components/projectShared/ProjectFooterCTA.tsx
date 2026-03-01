@@ -2,7 +2,7 @@ import { Send, Phone } from "lucide-react";
 
 const PHONE = "+79013325199";
 const PHONE_DISPLAY = "+7 901 332 51 99";
-const TELEGRAM_LINK = "https://t.me/@tttim_skl";
+const TELEGRAM_LINK = "https://t.me/tttim_skl";
 
 interface Props {
   onLead: () => void;

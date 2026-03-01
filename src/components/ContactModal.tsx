@@ -3,7 +3,7 @@ import { X, Phone, Send } from "lucide-react";
 
 const PHONE = "+79013325199";
 const PHONE_DISPLAY = "+7 901 332 51 99";
-const TELEGRAM_LINK = "https://t.me/@tttim_skl";
+const TELEGRAM_LINK = "https://t.me/tttim_skl";
 const LEADS_URL =
   "https://functions.poehali.dev/224b976f-276f-46b9-a317-78cbf9185917";
 
