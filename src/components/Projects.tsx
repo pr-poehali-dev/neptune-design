@@ -35,6 +35,28 @@ const projects = [
     tags: ["Керамогранит", "Пеноблок", "Гараж + подвал"],
     preview: "https://cdn.poehali.dev/projects/45e5dd28-acf9-4577-bd02-33b9654b7bee/bucket/ac9bf776-8edd-4df1-b694-28c9143977c6.jpg",
   },
+  {
+    id: 4,
+    slug: "/project/tsvetnaya2",
+    title: "Цветочная 2",
+    subtitle: "Просторный одноэтажный дом с сауной и террасой",
+    category: "1 этаж",
+    area: "204 м²",
+    rooms: "3 спальни",
+    tags: ["Газобетон / Кирпич", "Терраса 69 м²", "Сауна"],
+    preview: "https://cdn.poehali.dev/projects/45e5dd28-acf9-4577-bd02-33b9654b7bee/bucket/5eeae2f4-60fc-41ec-84c3-8ad19a376dad.jpg",
+  },
+  {
+    id: 5,
+    slug: "/project/vyatlina",
+    title: "Вятлина",
+    subtitle: "Двухэтажный дом с гаражом, кабинетом и вторым светом",
+    category: "2 этажа",
+    area: "235,81 м²",
+    rooms: "3 спальни",
+    tags: ["Газобетон / Кирпич", "Плоская кровля", "Гараж"],
+    preview: "https://cdn.poehali.dev/projects/45e5dd28-acf9-4577-bd02-33b9654b7bee/bucket/64c28452-9155-4b56-a6ef-522ad1652bb2.jpg",
+  },
 ]
 
 export function Projects() {
@@ -51,7 +73,7 @@ export function Projects() {
           <p className="text-sm text-muted-foreground">Нажмите на проект, чтобы открыть полную страницу с калькулятором</p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {projects.map((project) => (
             <article
               key={project.id}
